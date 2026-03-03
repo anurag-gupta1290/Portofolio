@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anurag Gupta · Senior Java Architect</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ----- MODERN PROFESSIONAL RESET & VARIABLES ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-deep: #0b1120;        /* deeper navy */
+            --bg-card: #1a2436;         /* rich card background */
+            --accent-primary: #2f7cf0;  /* vibrant electric blue */
+            --accent-glow: #4b93ff;
+            --text-bright: #f1f5f9;
+            --text-subtle: #9fb3cf;
+            --border-dim: #2d3a4e;
+            --grad-1: #0f172a;
+            --grad-2: #1a2f42;
+            --box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-bright);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* ----- TYPOGRAPHY & GLOBAL ----- */
+        a {
+            text-decoration: none;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 3.2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #bdd3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-primary), #7aa9ff);
+            margin: 0.8rem auto 0;
+            border-radius: 8px;
+        }
+
+        /* ----- NAVIGATION (ELEVATED) ----- */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.3rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 14, 26, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(140deg, #ffffff, #b0d0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            background: linear-gradient(140deg, var(--accent-primary), #91b9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.8rem;
+        }
+
+        .nav-links a {
+            color: var(--text-bright);
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            padding-bottom: 4px;
+            transition: 0.2s ease;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2.5px;
+            background: var(--accent-primary);
+            transition: width 0.25s ease-out;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* ----- HERO SECTION (STRONG PRESENCE) ----- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 12%;
+            background: radial-gradient(ellipse at 30% 40%, #1a2f46, var(--bg-deep) 80%);
+            position: relative;
+            isolation: isolate;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(145deg, #fff, #c1dbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text-subtle);
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        .hero-highlight {
+            color: var(--accent-primary);
+            font-weight: 600;
+            border-right: 3px solid var(--accent-primary);
+            padding-right: 8px;
+            background: rgba(47, 124, 240, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            animation: blinkCursor 0.9s infinite;
+        }
+
+        @keyframes blinkCursor {
+            50% { border-color: transparent; }
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #b7c9e2;
+            max-width: 680px;
+            margin: 2rem 0 1rem;
+            background: rgba(255,255,255,0.02);
+            padding: 1.2rem 2rem;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(47, 124, 240, 0.15);
+        }
+
+        .hero-description strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* floating subtle cta (optional) */
+        .hero-cta {
+            margin-top: 2rem;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent-primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            background: transparent;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* ----- SKILLS SECTION (ELEGANT CARDS) ----- */
+        #skills {
+            background-color: #0d1423;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2.5rem 1.8rem;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid var(--border-dim);
+            transition: 0.25s ease-out;
+            box-shadow: 0 15px 25px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #6da5ff, #2f7cf0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-card p {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 30px 40px -16px #2f7cf070;
+        }
+
+        /* ----- PROJECTS (DETAILED & PREMIUM) ----- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2.2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 28px;
+            padding: 2.2rem;
+            border: 1px solid var(--border-dim);
+            transition: all 0.25s;
+            box-shadow: 0 20px 30px -20px black;
+        }
+
+        .project-card:hover {
+            background: #1f2d42;
+            border-color: var(--accent-primary);
+            transform: scale(1.02) translateY(-6px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .project-card h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(145deg, #fff, #c1d6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-card p {
+            color: #cbd5e1;
+            margin: 0.9rem 0 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 1.4rem 0 0.5rem;
+        }
+
+        .tag {
+            background: rgba(47, 124, 240, 0.1);
+            color: var(--accent-glow);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(47, 124, 240, 0.2);
+            backdrop-filter: blur(2px);
+        }
+
+        /* ----- FOOTER / CONTACT (PROFESSIONAL) ----- */
+        footer {
+            padding: 5rem 10% 4rem;
+            text-align: center;
+            border-top: 1px solid #1e3144;
+            background: #0b101c;
+        }
+
+        .social-btns {
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-btns a {
+            color: var(--text-subtle);
+            font-size: 2rem;
+            transition: 0.2s;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a2637;
+            border-radius: 50%;
+            border: 1px solid #304258;
+        }
+
+        .social-btns a:hover {
+            color: white;
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-6px);
+        }
+
+        footer p {
+            color: #8ca3c0;
+            font-size: 1rem;
+        }
+
+        .edu-badge {
+            background: #1b2538;
+            display: inline-block;
+            padding: 0.5rem 1.8rem;
+            border-radius: 60px;
+            margin-top: 1.5rem;
+            border: 1px solid #2b3d58;
+            font-weight: 500;
+            color: #d1e2ff;
+        }
+
+        /* ----- RESPONSIVE REFINEMENTS ----- */
+        @media (max-width: 900px) {
+            nav { padding: 1rem 5%; }
+            .hero h1 { font-size: 3.6rem; }
+            .hero h2 { font-size: 1.5rem; }
+            .section-title { font-size: 2.3rem; }
+        }
+
+        @media (max-width: 700px) {
+            .nav-links { display: none; } /* keep clean, no mobile menu complexity */
+            .hero h1 { font-size: 2.9rem; }
+            .hero-description { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">ANURAG<span> G.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#skills">Stack</a></li>
+            <li><a href="#projects">Work</a></li>
+            <li><a href="#contact">Connect</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Anurag Gupta</h1>
+        <h2>I architect Java backends &nbsp;|&nbsp; <span class="hero-highlight" id="typewriter"></span></h2>
+        <div class="hero-description">
+            <strong>Java · Spring Boot · System Design · DSA · Git</strong> — building scalable, resilient systems.  
+            Sharda University '26 · Open source contributor.
+        </div>
+        <div class="hero-cta">
+            <a href="#projects" class="btn-outline"><i class="fas fa-arrow-down" style="margin-right: 8px;"></i>Explore work</a>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Expertise & tools</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-java"></i>
+                <p>Java 17/21</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-leaf"></i>
+                <p>Spring Boot</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <p>DSA · LeetCode</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-project-diagram"></i>
+                <p>System Design</p>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-github"></i>
+                <p>GitHub Actions</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-database"></i>
+                <p>Postgres, MongoDB</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Featured projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>EduConnect API</h3>
+                <p>Scalable REST platform for university – Spring Security, JWT, role-based access, PostgreSQL, Redis caching. Used by 200+ mock students.</p>
+                <div class="project-tags">
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Redis</span>
+                    <span class="tag">JWT</span>
+                    <span class="tag">Docker</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Kafka Streams · Ledger</h3>
+                <p>Event-driven microservice simulating payment ledger. Uses Kafka, MongoDB, and service discovery (Eureka). Demonstrates CQRS pattern.</p>
+                <div class="project-tags">
+                    <span class="tag">Microservices</span>
+                    <span class="tag">Kafka</span>
+                    <span class="tag">Eureka</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>DSA Lens · Java</h3>
+                <p>High-performance library with 50+ algorithms (graph, DP, trees) and benchmarks. Used by peers for interview prep.</p>
+                <div class="project-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Algorithms</span>
+                    <span class="tag">JUnit</span>
+                    <span class="tag">Benchmark</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>DevOps pipeline · GitHub</h3>
+                <p>CI/CD with GitHub Actions, Docker build push, and deployment to AWS EC2 (via self-hosted runner). Infrastructure as code.</p>
+                <div class="project-tags">
+                    <span class="tag">CI/CD</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">YAML</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="social-btns">
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:anurag.gupta@example.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+        </div>
+        <p>© 2026 Anurag Gupta — Senior Java Architect (in the making)</p>
+        <div class="edu-badge">
+            <i class="fas fa-university" style="margin-right: 8px;"></i> Sharda University, Greater Noida · CSE (Hons.)
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // PROFESSIONAL TYPEWRITER WITH MULTIPLE ROLES
+            const typeEl = document.getElementById('typewriter');
+            const phrases = [
+                "Spring Boot",
+                "System Design",
+                "DSA",
+                "Git & CI/CD",
+                "Cloud Native"
+            ];
+            
+            let idx = 0;
+            let charPos = 0;
+            let deleting = false;
+            let speed = 110;
+
+            function tick() {
+                const current = phrases[idx];
+                if (!deleting && charPos <= current.length) {
+                    // typing
+                    typeEl.textContent = current.substring(0, charPos);
+                    charPos++;
+                    speed = 100;
+                } 
+                else if (deleting && charPos >= 0) {
+                    typeEl.textContent = current.substring(0, charPos);
+                    charPos--;
+                    speed = 50;
+                }
+
+                // when a phrase is fully typed
+                if (!deleting && charPos === current.length + 1) {
+                    deleting = true;
+                    speed = 1400;      // pause at full word
+                }
+                // when fully deleted, move to next phrase
+                else if (deleting && charPos === 0) {
+                    deleting = false;
+                    idx = (idx + 1) % phrases.length;
+                    speed = 300;
+                }
+                setTimeout(tick, speed);
+            }
+
+            // ensure element exists
+            if (typeEl) tick();
+
+            // optional: smooth scroll for nav links (without hash jump jitter)
+            document.querySelectorAll('.nav-links a, .btn-outline').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const targetEl = document.getElementById(targetId);
+                        if (targetEl) {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
